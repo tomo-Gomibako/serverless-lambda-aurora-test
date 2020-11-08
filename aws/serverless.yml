@@ -1,0 +1,39 @@
+service: test
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${opt:profile, self:custom.defaultProfile}
+  region: ${opt:region, self:custom.defaultRegion}
+  apiGateway:
+    shouldStartNameWithService: true
+
+package:
+  excludeDevDependencies: true
+  exclude:
+    - serverless-http
+
+custom:
+  defaultStage: default
+  defaultProfile: default
+  defaultRegion: ap-northeast-1
+  serverless-offline:
+    httpPort: 4000
+  webpack:
+    config: './webpack.config.js'
+    packager: 'yarn'
+    packagerOptions: {}
+
+functions:
+  api:
+    handler: src/index.handler
+    events:
+      - http:
+          method: get
+          path: '/ping'
+          cors: true
