@@ -1,0 +1,10 @@
+FROM node:14-alpine
+
+WORKDIR /app
+COPY ["package.json", "yarn.lock", "./"]
+
+RUN apk add --update gcc g++ make python3
+
+RUN yarn install --silent --production=false
+
+CMD yarn start
