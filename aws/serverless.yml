@@ -1,8 +1,9 @@
-service: test
+service: blog
 
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-dotenv-plugin
 
 provider:
   name: aws
@@ -22,11 +23,8 @@ custom:
   defaultStage: default
   defaultProfile: default
   defaultRegion: ap-northeast-1
-  USERNAME: aurora
-  PASSWORD: password
-  DB_NAME: aurora
   serverless-offline:
-    host: ${env:HOST, localhost}
+    host: ${env:HOST, 'localhost'}
     httpPort: ${env:PORT, 3000}
   webpack:
     config: './webpack.config.js'
@@ -73,13 +71,13 @@ resources:
     AuroraRDSCluster:
       Type: AWS::RDS::DBCluster
       Properties:
-        MasterUsername: ${self:custom.USERNAME}
-        MasterUserPassword: ${self:custom.PASSWORD}
+        MasterUsername: ${env.AURORA_DATABASE}
+        MasterUserPassword: ${env.AURORA_USER}
         # DBSubnetGroupName:
         #   Ref: ServerlessSubnetGroup
         Engine: aurora-mysql
         EngineVersion: 5.7.mysql_aurora.2.09.0
-        DatabaseName: ${self:custom.DB_NAME}
+        DatabaseName: ${env.AURORA_PASSWORD}
         BackupRetentionPeriod: 3
         DBClusterParameterGroupName:
           Ref: AuroraRDSClusterParameter

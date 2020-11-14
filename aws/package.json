@@ -31,6 +31,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.2",
     "serverless": "^2.11.0",
+    "serverless-dotenv-plugin": "^3.1.0",
     "serverless-offline": "^6.8.0",
     "serverless-plugin-include-dependencies": "^4.1.0",
     "serverless-webpack": "^5.3.5",
