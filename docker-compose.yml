@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  db:
+    image: mysql:5.7
+    container_name: blog_db
+    restart: always
+    env_file:
+      - ./mysql/.env
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d:ro
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d:ro
   lambda:
     build: ./aws
     container_name: blog_lambda
@@ -14,6 +24,8 @@ services:
     volumes:
       - ./aws:/app
       - lambda_node_modules:/app/node_modules
+    depends_on:
+      - db
   next:
     build: ./next
     container_name: blog_next
@@ -24,6 +36,8 @@ services:
     volumes:
       - ./next:/app
       - next_node_modules:/app/node_modules
+    depends_on:
+      - lambda
 
 volumes:
   lambda_node_modules:
