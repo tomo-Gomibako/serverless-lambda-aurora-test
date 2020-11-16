@@ -7,6 +7,10 @@ services:
     restart: always
     env_file:
       - ./mysql/.env
+    environment:
+      MYSQL_DATABASE: $$DATABASE_NAME
+      MYSQL_USER: $$DATABASE_USER
+      MYSQL_PASSWORD: $$DATABASE_PASSWORD
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/conf.d:/etc/mysql/conf.d:ro

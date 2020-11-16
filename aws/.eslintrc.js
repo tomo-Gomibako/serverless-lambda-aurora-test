@@ -13,7 +13,7 @@ module.exports = {
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: "tsconfig.json",
+    project: "aws/tsconfig.json",
     sourceType: "module",
   },
   plugins: [
@@ -33,6 +33,7 @@ module.exports = {
   },
   "settings": {
     "import/resolver": {
+      node: {},
       webpack: {
         config: path.resolve(__dirname, './webpack.config.js')
       }
