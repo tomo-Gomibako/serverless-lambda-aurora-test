@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   env: {
     browser: true,
@@ -11,7 +13,7 @@ module.exports = {
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: "aws/tsconfig.json",
+    project: "tsconfig.json",
     sourceType: "module",
   },
   plugins: [
@@ -31,7 +33,9 @@ module.exports = {
   },
   "settings": {
     "import/resolver": {
-      typescript: {}
+      webpack: {
+        config: path.resolve(__dirname, './webpack.config.js')
+      }
     }
   }
-};
+}
