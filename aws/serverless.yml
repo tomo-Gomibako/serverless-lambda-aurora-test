@@ -51,7 +51,7 @@ resources:
         Description: Parameter group for the Serverless Aurora RDS DB.
         Family: aurora-mysql5.7
         Parameters:
-          character_set_database: 'utf32'
+          character_set_database: 'utf8mb4'
     # ServerlessSecurityGroup:
     #   DependsOn: ServerlessVPC
     #   Type: AWS::EC2::SecurityGroup
