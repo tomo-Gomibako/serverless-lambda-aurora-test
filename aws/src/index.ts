@@ -3,7 +3,7 @@ import * as cors from 'cors'
 import * as serverless from 'serverless-http'
 import * as bodyParser from 'body-parser'
 
-import ping from '@/src/handlers/ping'
+import ping from '@/handlers/ping'
 
 const app: express.Application = express()
 
