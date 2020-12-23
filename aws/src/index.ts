@@ -1,7 +1,7 @@
-import * as express from 'express'
-import * as cors from 'cors'
-import * as serverless from 'serverless-http'
-import * as bodyParser from 'body-parser'
+import express from 'express'
+import cors from 'cors'
+import serverless from 'serverless-http'
+import bodyParser from 'body-parser'
 
 import ping from '@/handlers/ping'
 
