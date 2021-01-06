@@ -6,9 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "serverless offline start",
-    "deploy": "serverless deploy -v"
+    "deploy": "serverless deploy -v",
+    "makemigrations": "npx mikro-orm migration:create",
+    "migrate": "npx mikro-orm migration:up"
   },
   "dependencies": {
+    "@mikro-orm/core": "^4.3.4",
+    "@mikro-orm/migrations": "^4.3.4",
+    "@mikro-orm/mysql": "^4.3.4",
     "aws-sdk": "^2.787.0",
     "aws-serverless-express": "^3.3.8",
     "axios": "^0.21.0",
@@ -20,6 +25,7 @@
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
+    "@mikro-orm/cli": "^4.3.4",
     "@types/cors": "^2.8.8",
     "@types/express": "^4.17.8",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
